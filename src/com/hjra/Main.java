@@ -14,9 +14,9 @@ public class Main {
         final String FILENAME_OUTPUT = "after_eod.csv";
         final String CSV_SEPARATOR = ";";
         final int CSV_ARR_LEN = 7;
-        final int NUM_AVERAGE_THREAD = 4; //maximum eight and even
-        final int NUM_BENEFIT_THREAD = NUM_AVERAGE_THREAD; //maximum eight and even
-        final int NUM_BONUS_THREAD = 8; //must be eight
+        final int NUM_AVERAGE_THREAD = 2; //maximum eight and even
+        final int NUM_BENEFIT_THREAD = 2; //maximum eight and even
+        final int NUM_BONUS_THREAD = 2; //must be eightsdafd
         final double TOTAL_BONUS = 1000;
         final double INCREMENT_BONUS = 10;
         final int NEW_FEE_TRANSFER_BENEFIT = 5;
@@ -36,16 +36,14 @@ public class Main {
         executor.execute(pa);
 
         // Consumer thread, calculating the average
-        int numSentinelMsg = NUM_BENEFIT_THREAD / NUM_AVERAGE_THREAD;
         for (int i = 0; i < NUM_AVERAGE_THREAD; i++) {
-            ConsumerAverageCalculation cafc = new ConsumerAverageCalculation(pbqAverage, pbqBenefit, numSentinelMsg);
+            ConsumerAverageCalculation cafc = new ConsumerAverageCalculation(pbqAverage, pbqBenefit, NUM_BENEFIT_THREAD);
             executor.execute(cafc);
         }
 
         // Consumer thread, calculating the benefit
-        numSentinelMsg = NUM_BONUS_THREAD / NUM_BENEFIT_THREAD;
         for (int i = 0; i < NUM_BENEFIT_THREAD; i++) {
-            ConsumerBenefitCalculation cbfc = new ConsumerBenefitCalculation(pbqBenefit, pbqBonus, numSentinelMsg,
+            ConsumerBenefitCalculation cbfc = new ConsumerBenefitCalculation(pbqBenefit, pbqBonus, NUM_BONUS_THREAD,
                     NEW_FEE_TRANSFER_BENEFIT, INCREMENT_BALANCE_BENEFIT);
             executor.execute(cbfc);
         }
@@ -66,7 +64,10 @@ public class Main {
         try {
             // next line will block till all tasks finishes
             executor.awaitTermination(Long.MAX_VALUE, TimeUnit.DAYS);
-            long totalExecutionTime = System.currentTimeMillis() - startTime;
+            long currentTime = System.currentTimeMillis();
+            System.out.println("start time:" + startTime + " ms," + "current time: " + currentTime);
+
+            long totalExecutionTime = currentTime - startTime;
             System.out.println("total execution time:" + totalExecutionTime + " ms");
         } catch (InterruptedException e) {
             e.printStackTrace();

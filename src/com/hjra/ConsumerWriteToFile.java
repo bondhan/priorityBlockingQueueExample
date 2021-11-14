@@ -54,12 +54,6 @@ public class ConsumerWriteToFile implements Runnable {
                     e.printStackTrace();
                 }
 
-
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

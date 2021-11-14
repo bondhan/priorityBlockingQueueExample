@@ -50,11 +50,6 @@ public class ConsumerAverageCalculation implements Runnable {
                 // put the result to benefitQueue for benefit calculation
                 queueBenefitCalculation.put(acc);
 
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

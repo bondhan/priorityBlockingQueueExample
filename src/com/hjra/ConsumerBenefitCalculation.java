@@ -63,11 +63,6 @@ public class ConsumerBenefitCalculation implements Runnable {
 
                 queueBonusCalculation.put(acc);
 
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
