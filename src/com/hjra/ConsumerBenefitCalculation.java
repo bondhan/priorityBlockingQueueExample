@@ -62,10 +62,14 @@ public class ConsumerBenefitCalculation implements Runnable {
                     acc.topupBalance(deltaBalance);
                 }
 
-                System.out.println("Benefit Consume " + acc);
+                System.out.println("Benefit Consume: " + acc);
 
                 queueBonusCalculation.put(acc);
-
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

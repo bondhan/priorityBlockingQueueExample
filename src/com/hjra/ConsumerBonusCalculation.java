@@ -56,11 +56,15 @@ public class ConsumerBonusCalculation implements Runnable {
                     }
                 }
 
-                System.out.println("Bonus " + acc);
+                System.out.println("Bonus: " + acc);
 
                 //write to queueFile for writing
                 queueWriteFile.put(acc);
-
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

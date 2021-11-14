@@ -44,7 +44,7 @@ public class ConsumerWriteToFile implements Runnable {
                     continue;
                 }
 
-                System.out.println("Write" + acc);
+                System.out.println("Write: " + acc);
 
                 try {
                     if (bw != null) {
@@ -53,7 +53,11 @@ public class ConsumerWriteToFile implements Runnable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

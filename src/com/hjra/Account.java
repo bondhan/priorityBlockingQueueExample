@@ -17,6 +17,7 @@ public class Account implements Comparable<Account> {
 
     public Account() {
     }
+
     public Account(String csvLine, String csvSeparator, String lineSeparator, int expectedLen) {
         String[] split = csvLine.split(csvSeparator);
         if (split.length != expectedLen) {

@@ -44,6 +44,11 @@ public class ProducerAccount implements Runnable {
 
                 // put to the queue
                 this.averageQueue.put(acc);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
             //if end of file, put sentinel data to stop average thread

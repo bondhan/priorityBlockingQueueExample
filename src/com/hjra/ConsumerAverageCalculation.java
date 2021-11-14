@@ -49,11 +49,15 @@ public class ConsumerAverageCalculation implements Runnable {
                 acc.calculateAverage();
                 acc.setNo1ThreadNo(threadNameID);
 
-                System.out.println("Average Consume " + acc);
+                System.out.println("Average Consume: " + acc);
 
                 // put the result to benefitQueue for benefit calculation
                 queueBenefitCalculation.put(acc);
-
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -1,0 +1,21 @@
+Ada sebuah bank memiliki nasabah 200 data. Buatlah fungsi end of day dimana data dimabil dari
+Before Eod.csv (hasilnya di write ke After Eod.csv) kemudian proses dalam 1 waktu dengan step by
+step / proses sebagai berikut (gunakan multi-thread):
+
+1. Hitung average balance setiap nasabah, dengan meng-average field ‘Balanced’ dengan
+‘Previous Balanced’ kemudian update data ke field ‘Average Balanced’. (Jumlah Thread
+bebas dan pastikan No Thread yang di gunakan tertulis di ‘No 1 Thread-No’)
+
+2. Nasabah bisa mendapatkan benefit:
+    a. Jika balanced di antara 100-150 akan mengupdate free transfer menjadi 5
+    (Jumlah Thread bebas dan pastikan No Thread yang di gunakan tertulis di ‘No 2a
+    Thread-No’)
+
+    b. Jika balanced di atas 150 akan mendapatkan tambahan balanced sebesar 25
+    (Jumlah Thread bebas dan pastikan No Thread yang di gunakan tertulis di ‘No 2b
+    Thread-No’)
+
+3. Bank memiliki budget 1.000 yang akan di bagikan ke 100 orang pertama (data urutan no 1-
+100) akan mendapatkan tambahan balance sebesar 10, untuk case ini buatlah 8 thread yang
+akan berjalan secara bersamaan (pastikan No Thread yang di gunakan tertulis di ‘No 3
+Thread-No’).
