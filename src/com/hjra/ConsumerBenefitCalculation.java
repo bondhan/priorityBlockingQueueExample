@@ -32,10 +32,13 @@ public class ConsumerBenefitCalculation implements Runnable {
                 Account acc = queueBenefitCalculation.take();
 
                 if (acc.getId() == Long.MAX_VALUE) {
-                    for (int i = 0; i < this.numSentinelMsg; i++) {
-                        queueBonusCalculation.put(acc);
-                    }
                     synchronized (this) {
+                        if (isDone) {
+                            continue;
+                        }
+                        for (int i = 0; i < this.numSentinelMsg; i++) {
+                            queueBonusCalculation.put(acc);
+                        }
                         isDone = true;
                     }
                     continue;

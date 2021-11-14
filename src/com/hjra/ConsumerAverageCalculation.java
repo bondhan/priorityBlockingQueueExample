@@ -28,12 +28,16 @@ public class ConsumerAverageCalculation implements Runnable {
                 Account acc = queueAverageCalculation.take();
 
                 if (acc.getId() == Long.MAX_VALUE) {
-                    for (int i = 0; i < this.numSentinelMsg; i++) {
-                        queueBenefitCalculation.put(acc);
-                    }
                     synchronized (this) {
+                        if (isDone) {
+                            continue;
+                        }
+                        for (int i = 0; i < this.numSentinelMsg; i++) {
+                            queueBenefitCalculation.put(acc);
+                        }
                         isDone = true;
                     }
+
                     continue;
                 }
 

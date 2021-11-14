@@ -14,9 +14,9 @@ public class Main {
         final String FILENAME_OUTPUT = "after_eod.csv";
         final String CSV_SEPARATOR = ";";
         final int CSV_ARR_LEN = 7;
-        final int NUM_AVERAGE_THREAD = 2; //maximum eight and even
-        final int NUM_BENEFIT_THREAD = 2; //maximum eight and even
-        final int NUM_BONUS_THREAD = 2; //must be eightsdafd
+        final int NUM_AVERAGE_THREAD = 2;
+        final int NUM_BENEFIT_THREAD = 2;
+        final int NUM_BONUS_THREAD = 8;
         final double TOTAL_BONUS = 1000;
         final double INCREMENT_BONUS = 10;
         final int NEW_FEE_TRANSFER_BENEFIT = 5;
