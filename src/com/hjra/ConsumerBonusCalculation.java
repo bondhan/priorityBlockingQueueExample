@@ -29,8 +29,11 @@ public class ConsumerBonusCalculation implements Runnable {
                 Account acc = queueBonus.take();
 
                 if (acc.getId() == Long.MAX_VALUE) {
-                    queueWriteFile.put(acc);
                     synchronized (this) {
+                        if (isDone) {
+                            continue;
+                        }
+                        queueWriteFile.put(acc);
                         isDone = true;
                     }
                     continue;
@@ -58,11 +61,6 @@ public class ConsumerBonusCalculation implements Runnable {
                 //write to queueFile for writing
                 queueWriteFile.put(acc);
 
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
